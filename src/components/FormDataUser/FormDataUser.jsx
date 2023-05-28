@@ -1,17 +1,21 @@
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import "./FormDataUser.css";
+import { useState } from "react";
 
 const FormDataUser = ({ onCloseModal, onSubmit, dataUser }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: dataUser,
   });
+  const [showPass, setshowPass] = useState(false);
 
   const onHandleSubmit = (data) => {
     if (dataUser) {
       onSubmit({ id: dataUser.id, ...data });
     } else onSubmit(data);
   };
+
+  const onShowPass = () => (showPass ? setshowPass(false) : setshowPass(true));
 
   return (
     <form className="userForm" onSubmit={handleSubmit(onHandleSubmit)}>
@@ -53,8 +57,21 @@ const FormDataUser = ({ onCloseModal, onSubmit, dataUser }) => {
         </div>
         <div className="dvInputForm">
           <label htmlFor="txtPass">Password</label>
+          {showPass ? (
+            <i
+              className="fa-regular fa-eye-slash"
+              title="Hide"
+              onClick={onShowPass}
+            ></i>
+          ) : (
+            <i
+              className="fa-regular fa-eye"
+              title="Show"
+              onClick={onShowPass}
+            ></i>
+          )}
           <input
-            type="password"
+            type={showPass ? "text" : "password"}
             placeholder="*********"
             id="txtPass"
             {...register("password")}

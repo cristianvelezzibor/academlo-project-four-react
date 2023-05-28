@@ -29,6 +29,7 @@
 .dvInputForm {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .buttonSubmit {
   width: 100%;
@@ -39,5 +40,12 @@
   background: #555a88;
   color: white;
   font-family: roboto;
+  cursor: pointer;
+}
+.dvInputForm i {
+  position: absolute;
+  top: 22px;
+  right: 5px;
+  left: auto;
   cursor: pointer;
 }
