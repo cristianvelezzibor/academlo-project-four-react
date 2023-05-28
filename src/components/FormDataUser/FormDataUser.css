@@ -1,0 +1,43 @@
+.userForm {
+  width: 80vw;
+  max-width: 42rem;
+  position: relative;
+  padding: 3.2rem 3.2rem 3.8rem;
+  background: white;
+}
+.userForm h2 {
+  font-family: helveticaNeue;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+.buttonCloseForm {
+  position: absolute;
+  font-size: 25px;
+  top: 2rem;
+  right: 2rem;
+  padding: 0;
+  border: none;
+  color: #555a88;
+  cursor: pointer;
+}
+.dvInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  font-family: roboto;
+}
+.dvInputForm {
+  display: flex;
+  flex-direction: column;
+}
+.buttonSubmit {
+  width: 100%;
+  border: none;
+  padding: 1.5rem 0;
+  margin: 4.8rem auto 0;
+  display: block;
+  background: #555a88;
+  color: white;
+  font-family: roboto;
+  cursor: pointer;
+}
