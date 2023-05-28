@@ -3,12 +3,14 @@ import { getAllUsers } from "./services/getAllUsers";
 import { createUser } from "./services/createUser";
 import { updateUser } from "./services/updateUser";
 import { deleteUser } from "./services/deleteUser";
+import { toast, ToastContainer } from "react-toastify";
 import Header from "./components/Header/Header";
 import ListUsers from "./components/ListUsers/ListUsers";
 import Modal from "./components/Modal/Modal";
-import "./App.css";
 import FormDataUser from "./components/FormDataUser/FormDataUser";
 import PopupDeleteUser from "./components/PopupDeleteUser/PopupDeleteUser";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
   const [listUsers, setListUsers] = useState([]);
@@ -32,15 +34,22 @@ function App() {
     setListUsers(dataAllUsers);
   };
   const onSubmit = async (data) => {
-    if (data.id) await updateUser(data.id, data);
-    else await createUser(data);
+    let res;
+    if (data.id) res = await updateUser(data.id, data);
+    else res = await createUser(data);
     await loadAllUser();
-    onCloseModal();
+    if (res) {
+      toast.success("Congratulations.", { closeButton: true });
+      onCloseModal();
+    } else toast.error("Failed.", { closeButton: true });
   };
   const onSubmitDelete = async (data) => {
-    await deleteUser(data.id);
+    let res = await deleteUser(data.id);
     await loadAllUser();
-    onCloseModal();
+    if (res) {
+      toast.success("Congratulations.", { closeButton: true });
+      onCloseModal();
+    } else toast.error("Failed.", { closeButton: true });
   };
   const onEditUser = async (data) => {
     setdataUser(data);
@@ -77,6 +86,7 @@ function App() {
           userSelected={dataUser}
         />
       </Modal>
+      <ToastContainer />
     </>
   );
 }

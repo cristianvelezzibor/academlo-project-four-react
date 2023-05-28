@@ -8,7 +8,6 @@ const FormDataUser = ({ onCloseModal, onSubmit, dataUser }) => {
   });
 
   const onHandleSubmit = (data) => {
-    debugger;
     if (dataUser) {
       onSubmit({ id: dataUser.id, ...data });
     } else onSubmit(data);
